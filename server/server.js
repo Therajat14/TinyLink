@@ -3,18 +3,18 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import dbConnect from "./db/db.js";
+import routes from "./router/routes.js";
+
+dotenv.config();
+dbConnect();
 
 const app = express();
-dotenv.config();
+
 app.use(cors());
 app.use(express.json());
 
-dbConnect();
+app.use("/", routes);
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+app.listen(process.env.PORT, () => {
+  console.log("Server is running on port " + process.env.PORT);
 });
