@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import dbConnect from "./db/db.js";
-import routes from "./router/routes.js";
+import routes from "./router/linkRoutes.js";
 
 dotenv.config();
 dbConnect();

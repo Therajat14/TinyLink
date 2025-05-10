@@ -1,7 +1,7 @@
 import Link from "../model/model.js";
 import { customAlphabet } from "nanoid";
 
-// POST /api/shorten
+// POST
 const linkGenerator = async (req, res) => {
   const { originalUrl } = req.body;
   const nanoid = customAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 6);
@@ -31,7 +31,6 @@ const linkGenerator = async (req, res) => {
 // GET /:code
 const getLink = async (req, res) => {
   const { code } = req.params;
-  console.log(code);
 
   try {
     const link = await Link.findOne({ uniqueId: code });
@@ -42,10 +41,6 @@ const getLink = async (req, res) => {
 
     link.clicks += 1;
     await link.save();
-    // return res.status(200).json({
-    //   message: "Link retrieved successfully",
-    //   originalUrl: link.originalUrl,
-    // });
     return res.redirect(link.originalUrl);
   } catch (error) {
     return res.status(500).json({

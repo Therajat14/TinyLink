@@ -1,8 +1,8 @@
 import express from "express";
-import { linkGenerator, getLink } from "../controller/controller.js";
+import { getLink, linkGenerator } from "../controller/controller.js";
 const router = express.Router();
 
-router.post("/gen", linkGenerator);
 router.get("/:code", getLink);
+router.post("/", linkGenerator);
 
 export default router;
