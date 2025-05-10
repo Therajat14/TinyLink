@@ -42,11 +42,11 @@ const getLink = async (req, res) => {
 
     link.clicks += 1;
     await link.save();
-    return res.status(200).json({
-      message: "Link retrieved successfully",
-      originalUrl: link.originalUrl,
-    });
-    // return res.redirect(link.originalUrl);
+    // return res.status(200).json({
+    //   message: "Link retrieved successfully",
+    //   originalUrl: link.originalUrl,
+    // });
+    return res.redirect(link.originalUrl);
   } catch (error) {
     return res.status(500).json({
       message: "Error retrieving link",
