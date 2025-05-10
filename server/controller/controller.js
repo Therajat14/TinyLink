@@ -3,7 +3,10 @@ import { customAlphabet } from "nanoid";
 
 // POST
 const linkGenerator = async (req, res) => {
-  const { originalUrl } = req.body;
+  let { originalUrl } = req.body;
+  if (!/^https?:\/\//i.test(originalUrl)) {
+    originalUrl = "http://" + originalUrl;
+  }
   const nanoid = customAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 6);
   const code = nanoid();
   const shortUrl = `${req.protocol}://${req.get("host")}/${code}`;
